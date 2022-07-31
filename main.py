@@ -1636,6 +1636,6 @@ import time
 # a = {'A' + i[1:] if i[0] == 'a' else 'B' + i[1:] for i in r if i[1] == 'c'}
 # print(a)
 
-
+print("Вносим изменения")
 
 
