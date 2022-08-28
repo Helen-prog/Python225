@@ -1129,7 +1129,6 @@ import math
 
 import time
 
-
 # seconds = time.time()
 # print("Секунды с начала эпохи: ", seconds)
 # locale_time = time.ctime(454646354)
@@ -2019,17 +2018,546 @@ import time
 # print(to_dict(1, 2, 3, 4))
 # print(to_dict('grey', (2, 17), 3.11, -4))
 
-def ch(*args):
-    res = []
-    sr_ar = sum(args) / len(args)
-    print(sr_ar)
+# def ch(*args):
+#     res = []
+#     sr_ar = sum(args) / len(args)
+#     print(sr_ar)
+#
+#     for i in args:
+#         if i < sr_ar:
+#             res.append(i)
+#
+#     return res
+#
+#
+# print(ch(1, 2, 3, 4, 5, 6, 7, 8, 9))
+# print(ch(3, 6, 1, 9, 5))
 
-    for i in args:
-        if i < sr_ar:
-            res.append(i)
 
-    return res
+# def func(a, *args):
+#     return a, args
+#
+#
+# print(func(1))
+# print(func(1, 2, 3, "abc"))
+
+# def print_scores(student, *scores):
+#     print("Student Name: " + student)
+#     for score in scores:
+#         print(score)
+#
+#
+# print_scores("Irina", 100, 95, 88, 92, 99)
+# print_scores("Igor", 96, 20, 33)
 
 
-print(ch(1, 2, 3, 4, 5, 6, 7, 8, 9))
-print(ch(3, 6, 1, 9, 5))
+# def func(**kwargs):
+#     return kwargs
+#
+#
+# print(func(a=1, b=2, c=3))
+# print(func())
+# print(func(a="python"))
+
+# def intro(**data):
+#     for key, value in data.items():
+#         print(key, 'is', value)
+#     print()
+#
+#
+# intro(first_name="Irina", last_name="Fokina", age=22)
+# intro(first_name="Igor", last_name="WOOD", email='igor@gmail.com', age=25, phone='9594567895')
+
+# def db(**kwargs):
+#     my_dict.update(kwargs)
+#
+#
+# my_dict = {'one': 'first'}
+# db(k1=22, k2=31, k3=11, k4=91)
+# db(name='Bob', age='31', weight=61, eyes_color='gray')
+# print('my_dict =', my_dict)
+
+# def db(b, c, w, *args, name, **kwargs):
+#     print(b, c, w, args, name, kwargs)
+#
+#
+# db(7, 8, 9, a=5, name='Olga', q=5)
+
+# name = 'Tom'  # глобальная область видимости
+#
+#
+# def hi():
+#     global name
+#     name = 'Sam'  # локальная область видимости
+#     print("Hello", name)
+#
+#
+# def bye():
+#     print("Good bye", name)
+#
+#
+# # print(name)
+# hi()
+# # bye()
+# print(name)
+
+# i = 5
+#
+#
+# def func(arg=i):
+#     print("i =", i)
+#     print("arg =", arg)
+#
+#
+# i = 6
+# func()  # 5 или 6
+
+# x = 4
+#
+#
+# def add_two(a):
+#     # x = 2
+#
+#     def add_some():
+#         # x = 5
+#         print('x =', x)
+#         return a + x
+#
+#     return add_some()
+#
+#
+# print(add_two(3))
+
+# import builtins
+#
+# names = dir(builtins)
+#
+# for t in names:
+#     print(t)
+
+# min = [4, 5, 6]
+# print(max(min))
+# print(min(min))
+
+# def outer_func(who):
+#     def inner_func():
+#         print("Hello,", who)
+#
+#     inner_func()
+#
+#
+# outer_func("World!!!")
+
+# a = 2
+#
+#
+# def func1():
+#     a = 6
+#
+#     def func2(b):
+#         global a
+#         a = 4
+#         print("Сумма:", a + b)
+#
+#     print("Значение переменной a:", a)
+#     func2(4)
+#
+#
+# func1()
+# print(a)
+
+
+# def fn1():
+#     x = 25  # 1
+#
+#     def fn2():
+#         # x = 33  # 3
+#
+#         def fn3():
+#             nonlocal x
+#             x = 55  # 5
+#             print("fn3.x =", x)  # 6
+#
+#         fn3()  # 4
+#         print("fn2.x =", x)  # 7
+#
+#     fn2()  # 2
+#     print("fn1.x =", x)  # 8
+#
+# fn1()
+
+
+# def outer(a1, b1, a2, b2):
+#     a = 0
+#     b = 0
+#
+#     def inner():
+#         nonlocal a, b
+#         a = a1 + a2
+#         b = b1 + b2
+#
+#     inner()
+#     return [a, b]
+#
+#
+# res = outer(2, 3, -1, 4)
+# print(res)
+
+
+# def increment(number):
+#     def inner(x):
+#         return number + x
+#     return inner
+#
+#
+# a = increment(10)
+# print(a(5))
+# print(a(4))
+#
+# b = increment(1)
+# print(b(7))
+#
+# print(increment(5)(10))
+
+# def func1():
+#     a = 1
+#     b = 'line'
+#     c = [1, 2, 3]
+#
+#     def func2():
+#         nonlocal a, b
+#         c.append(4)
+#         a = a + 1
+#         b = b + "_new"
+#         return a, b, c
+#
+#     return func2
+#
+#
+# func = func1()
+# print(func())
+
+
+# def func(city):
+#     s = 0
+#
+#     def inner():
+#         nonlocal s
+#         s += 1
+#         print(city, s)
+#
+#     return inner
+#
+#
+# res1 = func('Москва')
+# res1()
+# res1()
+#
+# res2 = func('Сочи')
+# res2()
+# res2()
+# res2()
+# res2()
+#
+# res1()
+
+
+# student = {
+#     'Alice': 98,
+#     'Bob': 67,
+#     'Chris': 85,
+#     'David': 75,
+#     'Elise': 54,
+#     'Fiona': 35,
+#     'Grace': 69
+# }
+#
+#
+# def make_classifier(lower, upper):
+#     def students(exem):
+#         return {k: v for k, v in exem.items() if lower <= v < upper}
+#
+#     return students
+#
+#
+# a = make_classifier(80, 100)
+# b = make_classifier(70, 80)
+# c = make_classifier(50, 70)
+# d = make_classifier(0, 50)
+#
+# print(a(student))
+# print(b(student))
+# print(c(student))
+# print(d(student))
+
+
+# from math import pi
+#
+#
+# def square(figure_type, **kwargs):
+#     if figure_type == 'rhombus':
+#         return kwargs['d1'] * kwargs['d2'] / 2
+#     # if figure_type == 'square':
+#     #     return kwargs['a'] ** 2
+#     # if figure_type == 'trapezoid':
+#     #     return 1 / 2 * (kwargs['a'] + kwargs['b']) * kwargs['h']
+#     # if figure_type == 'circle':
+#     #     return pi * kwargs['r'] ** 2
+#     # return 'invalid data'
+#
+#
+# print(square(figure_type='rhombus', d1=10, d2=8))
+# # print(square(figure_type='square', a=5))
+# # print(square(figure_type='trapezoid', a=12, b=3, h=6))
+# # print(square(figure_type='circle', r=18))
+# # print(square(figure_type='unknown', a=1, b=2, c=3))
+
+
+# lambda (анонимные функции)
+
+# def get_sum(x, y):
+#     return x + y
+#
+#
+# print(get_sum(1, 2))
+# print(get_sum(3, 4))
+#
+# print((lambda x, y: x + y)(1, 2))
+# print((lambda x, y: x + y)(3, 4))
+#
+# func = lambda x, y: x + y
+# print(func(1, 2))
+# print(func(3, 4))
+
+
+# print((lambda x, y: x ** 2 + y ** 2)(2, 5))
+
+# summ = lambda a=1, b=2, c=3: a + b + c
+#
+# print(summ())  # 6
+# print(summ(10))  # 15
+# print(summ(10, 20))  # 33
+# print(summ(10, 20, 30))  # 60
+
+
+# func1 = lambda *args: args
+#
+# print(func1(1, 2, 3, 4, 5, 6, 7))
+# print(func1('a', 'b', 'c'))
+
+# c = (
+#     lambda x: x * 2,
+#     lambda x: x * 3,
+#     lambda x: x * 4,
+# )
+#
+# for t in c:
+#     print(t('abc_'))
+
+
+# def inc(n):
+#     def inner(x):
+#         return n + x
+#
+#     return inner
+#
+#
+# f = inc(5)
+# print(f(2))
+#
+#
+# # def inc1(n):
+# #     return lambda x: n + x
+# #
+# #
+# # f1 = inc(5)
+# # print(f1(2))
+# #
+# # inc2 = lambda n: lambda x: n + x
+# #
+# # f2 = inc(5)
+# # print(f2(2))
+#
+# print((lambda n: lambda x: n + x)(5)(2))
+
+# print((lambda n: lambda x: lambda y: y + x + n)(10)(5)(2))
+
+
+# d = {'b': 10, 'a': 15, 'c': 4}
+# list_d = list(d.items())
+# print(list_d)
+# list_d.sort(key=lambda i: i[1], reverse=True)
+# print(list_d)
+# print(dict(list_d))
+
+# players = [
+#     {'name': 'Антон', 'last name': 'Бирюков', 'rating': 9},
+#     {'name': 'Алексей', 'last name': 'Бодня', 'rating': 10},
+#     {'name': 'Федор', 'last name': 'Сидоров', 'rating': 4},
+#     {'name': 'Михаил', 'last name': 'Семенов', 'rating': 6},
+# ]
+#
+# res1 = sorted(players, key=lambda item: item['last name'])
+# print(res1)
+#
+# res2 = sorted(players, key=lambda item: item['rating'], reverse=True)
+# print(res2)
+#
+# res3 = sorted(players, key=lambda item: item['rating'])
+# print(res3)
+
+
+# a = [(lambda x, y: x + y), (lambda x, y: x - y), (lambda x, y: x * y), (lambda x, y: x / y)]
+#
+# b = a[3](5, 3)
+# print(b)
+
+# a = {'one': lambda x: x - 1, 'two': lambda x: abs(x) - 1, 'three': lambda x: x}
+# b = [-3, 10, 0, 1]
+#
+# for i in b:
+#     if i < 0:
+#         print(a['two'](i))
+#     elif i > 0:
+#         print(a['one'](i))
+#     else:
+#         print(a['three'](i))
+
+# d = {
+#     1: lambda: print('Понедельник'),
+#     2: lambda: print('Вторник'),
+#     3: lambda: print('Среда'),
+#     4: lambda: print('Четверг'),
+#     5: lambda: print('Пятница'),
+#     6: lambda: print('Суббота'),
+#     7: lambda: print('Воскресенье')
+# }
+#
+# print(d[3])
+# d[3]()
+
+
+# print((lambda a, b: a if a > b else b)(15, 4))
+
+#  map(func, *iterables)
+
+# def mult(t):
+#     return t * 2
+#
+#
+# lst = [2, 8, 12, -5, -10]
+#
+# a = list(map(mult, lst))
+# print(a)
+#
+# print(list(map(lambda t: t * 2, lst)))
+
+# b = ['1', '2', '3', '4', '5']
+# c = list(map(int, b))
+# print(c)
+# print(type(c))
+
+# st = ['a', 'b', 'c', 'd', 'e']
+# num = [1, 2, 3, 4, 5]
+# print(list(map(lambda x, y: str(x) + y, num, st)))
+
+# l1 = [1, 2, 3]
+# l2 = [4, 5, 6]
+#
+# print(list(map(lambda x, y: x + y, l1, l2)))
+
+
+# res = filter(func => (true or false), *iterables)
+
+# t = ('abcd', 'abc', 'cdefg', 'def', 'ghi')
+#
+# t2 = tuple(filter(lambda s: len(s) == 3, t))
+# print(t2)
+
+# b = [66, 90, 68, 59, 76, 60, 88, 74, 81, 65]
+# res = list(filter(lambda s: s < 75, b))
+# print(res)
+
+import random
+
+
+# lst = [random.randint(1, 40) for i in range(10)]
+# print(lst)
+#
+# lst2 =
+# print(lst2)
+
+# s = [random.randrange(40) for i in range(10)]
+# print(s)
+# print(list(filter(lambda x: 10 <= x <= 20, s)))
+
+
+#  Декораторы
+
+
+# def hello():
+#     return 'Hello, I am func "hello"'  # 3
+#
+#
+# def bye():
+#     return "BYE!!!"
+#
+#
+# def super_func(func):
+#     print('Hello, I am func "super_func"')  # 2
+#     print(func())  # 4
+#
+#
+# super_func(hello)  # 1
+# super_func(bye)  # 1
+
+
+# def hello():
+#     return 'Hello, I am func "hello"'
+#
+#
+# test = hello
+# print(test())
+
+# def my_decorator(func):  # 2
+#     def func_wrapper():  # 3
+#         print('Code before')  # 4
+#         func()  # 5
+#         print('Code after')  # 8
+#     return func_wrapper  # 3
+#
+#
+# def func_test():  # 6
+#     print('func_test')  # 7
+#
+#
+# text = my_decorator(func_test)  # 1
+# text()
+
+
+def my_decorator(func):  # декорирующая функция
+    def func_wrapper():
+        print('*' * 40)
+        func()
+        print('*' * 40)
+    return func_wrapper
+
+
+@my_decorator  # декоратор
+def func_test():  # декорируемая функция
+    print('func_test')
+
+
+@my_decorator
+def hello():
+    print('hello')
+
+
+func_test()
+print()
+hello()
+
+
+
+# text = my_decorator(func_test)
+# text()
