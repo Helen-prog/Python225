@@ -2480,7 +2480,6 @@ import time
 
 import random
 
-
 # lst = [random.randint(1, 40) for i in range(10)]
 # print(lst)
 #
@@ -2535,29 +2534,447 @@ import random
 # text()
 
 
-def my_decorator(func):  # декорирующая функция
-    def func_wrapper():
-        print('*' * 40)
-        func()
-        print('*' * 40)
-    return func_wrapper
-
-
-@my_decorator  # декоратор
-def func_test():  # декорируемая функция
-    print('func_test')
-
-
-@my_decorator
-def hello():
-    print('hello')
-
-
-func_test()
-print()
-hello()
-
+# def my_decorator(func):  # декорирующая функция
+#     def func_wrapper():
+#         print('*' * 40)
+#         func()
+#         print('*' * 40)
+#     return func_wrapper
+#
+#
+# @my_decorator  # декоратор
+# def func_test():  # декорируемая функция
+#     print('func_test')
+#
+#
+# @my_decorator
+# def hello():
+#     print('hello')
+#
+#
+# func_test()
+# print()
+# hello()
 
 
 # text = my_decorator(func_test)
 # text()
+
+# def bold(fn):
+#     def wrap():
+#         return "<b>" + fn() + "</b>"
+#
+#     return wrap
+#
+#
+# def italic(fn):
+#     def wrap():
+#         return "<i>" + fn() + "</i>"
+#
+#     return wrap
+#
+#
+# @bold
+# @italic
+# def hello():
+#     return "text"
+#
+#
+# print(hello())
+
+# def cnt(fn):
+#     count = 0
+#
+#     def wrap():
+#         nonlocal count
+#         count = count + 1
+#         fn()
+#         print("Вызов функции:", count)
+#     return wrap
+#
+#
+# @cnt
+# def hello():
+#     print("Hello")
+#
+#
+# hello()
+# hello()
+# hello()
+
+# def args_decorator(fn):
+#     def wrap(args1, args2):
+#         print("Данные:", args1, args2)
+#         fn(args1, args2)
+#
+#     return wrap
+#
+#
+# @args_decorator
+# def print_full_name(first, last):
+#     print("Меня зовут:", first, last)
+#
+#
+# print_full_name("Ирина", "Лаврова")
+
+
+# def args_decorator(fn):
+#     def wrap(*args, **kwargs):
+#         print("args", args)
+#         print("kwargs", kwargs)
+#         fn(*args, **kwargs)
+#
+#     return wrap
+#
+#
+# @args_decorator
+# def print_full_name(a, b, c, study="Python"):
+#     print(a, b, c, "изучают", study, "\n")
+#
+#
+# @args_decorator
+# def new_func(q):
+#     print(q)
+#
+#
+# print_full_name("Борис", "Елизавета", "Светлана", study="JavaScript")
+# print_full_name("Владимир", "Екатерина", "Виктор")
+#
+# new_func("Новая функция")
+
+# def decor(args1, args2):
+#     def args_dec(fn):
+#         def wrap(x, y):
+#             print(args1, x, args2, y, "=", end=" ")
+#             fn(x, y)
+#
+#         return wrap
+#     return args_dec
+#
+#
+# @decor("Сложение:", "+")
+# def summa(a, b):
+#     print(a + b)
+#
+#
+# @decor("Разность:", "-")
+# def sub(a, b):
+#     print(a - b)
+#
+#
+# summa(5, 2)
+# sub(5, 2)
+
+# def myltiply(arg):
+#     def my_decorator(func):
+#         def wrap(*args, **kwargs):
+#             return arg * func(*args, **kwargs)
+#
+#         return wrap
+#     return my_decorator
+#
+#
+# @myltiply(3)
+# def return_num(num):
+#     return num
+#
+#
+# print("Результат:", return_num(5))
+
+# print(int("10"))
+# print(int("1010", 2))
+# print(int("12", 8))
+# print(int("A", 16))
+
+# print(bin(18))  # 0b10010
+# print(oct(18))  # 0o22
+# print(hex(18))  # 0x12
+#
+#
+# print(0b10010)
+# print(0o22)
+# print(0x12)
+
+# q = "Pyt"
+# w = 'hon'
+# e = q + w
+# print(e)
+#
+# print(e * 3)
+# print(e * -3)
+#
+# print(e in "I am learn Python")
+# print(e in "I am learn Java")
+
+# s = "Hello"
+# print(s[1])
+# print(s[-5])
+# # print(s[5])
+# print(s[::-1])
+
+# s = 'python'
+# s = s[:3] + 't' + s[4:]
+# print(s)
+# def changeCharToStr(s, c_old, c_new):
+#     i = 0
+#     s2 = ""
+#
+#     while i < len(s):
+#         if s[i] == c_old:
+#             s2 = s2 + c_new
+#         else:
+#             s2 = s2 + s[i]
+#         i = i + 1
+#
+#     return s2
+#
+#
+# str1 = "Я изучаю Nython. Мне нравится Nython. Nython очень интересный язык программирования."
+# str2 = changeCharToStr(str1, 'N', 'P')
+# print(str1)
+# print(str2)
+
+# print("Привет")
+# print(u"Привет")
+
+# print('I\'m learning\nPython')
+# print('C:\file.txt')
+# print('C:\\file.txt')
+# print(r'C:\file.txt')
+# print(r'C:\file\\'[:-1])
+# print(r'C:\file' + "\\")
+# print('C:\\file\\')
+
+
+# name = "Дмитрий"
+# age = 25
+# print(f"Меня зовут {name}. Мне {age} лет.")
+
+# import math
+#
+#
+# print(f"Значение числа pi: {round(math.pi, 2)}")
+# print(f"Значение числа pi: {math.pi:.3f}")
+
+# x = 10
+# y = 5
+# print(f"{x} x {y} / 2 = {x * y / 2}")
+# a = 74
+# print(f"{{{{{a}}}}}")
+
+# dir_name = "my_doc"
+# file_name = 'data.txt'
+# print(fr"home\{dir_name}\{file_name}")
+# print("home\\" + dir_name + "\\" + file_name)
+
+
+# def square(n):
+#     """Принимает число n, возращает квадрат числа n"""
+#     a = 2
+#     return n ** 2
+#
+#
+# print(square(5))
+# print(square.__doc__)
+
+# import math as m
+#
+#
+# def cylinder(r, h):
+#     """
+#     Вычисляет площадь цилиндра.
+#
+#     Вычисляет площадь цилиндра на основании заданной высоты и радиуса основания
+#     :param r: положительное число, радиус основания цилиндра
+#     :param h: положительное число, высота цилиндра
+#     :return: положительное число, площадь цилиндра
+#     """
+#     return 2 * m.pi * r * (r + h)
+#
+#
+# print(cylinder(2, 4))
+
+
+# print(ord("a"))
+# print(ord("#"))
+# print(ord("к"))
+#
+# while True:
+#     n = input("-> ")
+#     if n != "-1":
+#         print(ord(n))
+#     else:
+#         break
+
+
+# my_str = "Test string for meee"
+# arr = [ord(x) for x in my_str]
+# print("ASCII коды:", arr)
+# arr = [int(sum(arr) / len(arr))] + arr
+# print("Среднее арифметическое:", arr)
+# arr += [x for x in [ord(x) for x in input("-> ")[:3]] if x not in arr]
+# print(arr)
+# if arr[-1] in arr[:-1]:
+#     print("Количество последних элементов:", arr.count(arr[-1]) - 1)
+# arr.sort(reverse=True)
+# print(arr)
+
+
+# print(chr(97))
+# print(chr(7897))
+# print(chr(47))
+
+# a = 122
+# b = 97
+#
+# if a > b:
+#     for i in range(b, a + 1):
+#         print(chr(i), end=" ")
+# else:
+#     for i in range(a, b + 1):
+#         print(chr(i), end=" ")
+
+# print("apple" == "Apple")
+# print("apple" > "Apple")  # 97 > 65
+
+
+# from random import randint
+#
+# short = 8
+# longest = 12
+# min_ascii = 33
+# max_ascii = 126
+#
+#
+# def random_password():
+#     random_length = randint(short, longest)
+#     res = ""
+#     for i in range(random_length):
+#         random_char = chr(randint(min_ascii, max_ascii))
+#         res += random_char
+#     return res
+#
+# print("Ваш случайный пароль:", random_password())
+
+# s = "hello, WORLD! I am learn Python."
+# print(s.capitalize())  # Hello, world! i am learn python.
+# print(s.lower())  # hello, world! i am learn python.
+# print(s.upper())  # HELLO, WORLD! I AM LEARN PYTHON.
+# print(s.swapcase())  # HELLO, world! i AM LEARN pYTHON.
+# print(s.title())  # Hello, World! I Am Learn Python.
+
+
+# s = "hello, WORLD! I am learn Python."
+# print(s.count("h", 1, -4))  # количество искомых символов
+# print(s.find("Python"))  # возвращает индекс первого совпадения
+# print(s.find("oPython"))  # если посдстроки нет, возаращается -1
+
+# string = "один два"
+# one = string[:string.find(" ")]
+# two = string[string.find(" ") + 1:]
+# print(two + " " + one)
+
+# s = 'ab12c59p7dq'
+# digits = []
+# for symbol in s:
+#     if '0123456789'.find(symbol) != -1:
+#         digits.append(int(symbol))
+# print(digits)
+
+# s = "hello, WORLD! I am learn Python."
+# print(s.index("Python"))
+# print(s.index("oPython"))
+
+# s = "Дана строка сим(волов, среди которых ес)ть одна окрывающаяся"
+# ind1 = s.index("(")
+# ind2 = s.index(")")
+# print(ind1)
+# print(ind2)
+#
+# print(s[ind1+1:ind2])
+
+# s = "hello, WORLD! I am learn Python."
+# print(s.find("al"))
+# print(s.rfind("al"))
+# print(s.index("l"))
+# print(s.rindex("l"))
+# s = "Some content in this message has been blocked because the sender isn't in your Safe senders list"
+# item = "w"
+# if s.count(item) == 1:
+#     print(s.find(item))
+# elif s.count(item) >= 2:
+#     print(s.find(item), s.rfind(item))
+
+# s = "hello, WORLD! I am learn Python."
+# print(s.endswith("on."))
+# print(s.endswith("lo", 3, 5))
+#
+# print(s.startswith("hello"))
+# print(s.startswith("I am", 14))
+
+# print("aab123".isalnum())  # не пустая и состоит из букв или цифр
+# print("45%6".isalnum())  #
+#
+# print("ABCabc".isalpha())  # не пустая и содержит только буквы
+# print("123abc".isalpha())
+#
+# print("123".isdigit())  # не пустая и содержит только цифры
+# print("ывав1".isdigit())  #
+#
+# print('abc'.islower())  # не пустая и содержит только буквенные символы в нижнем регистре, также может сожержать
+# # спецсимволы и цифры
+# print('abc@98AS'.islower())
+#
+# print('ABC'.isupper())  # не пустая и содержит только буквенные символы в верхнем регистре, также может сожержать
+# # спецсимволы и цифры
+# print('ABC1^q'.isupper())
+
+# print(' \t \n '.isspace())  # строка состоит только из пробельных символов + табуляция и перенос на другую строку
+# print(' a '.isspace())
+
+# print('py'.center(10))
+# print('py'.center(11, "-"))
+# print('py'.center(2))
+
+# print("    py".lstrip())  # py
+# print("py    ".rstrip())  # py
+# print("      py    ".strip())  # py
+#
+# print("https://www.python.org/".lstrip("th/sp:"))
+# print('$py.$$$;'.rstrip(';$.'))
+# print('$py.$$$;'.strip(';$.'))
+#
+# print("https://www.python.org/".lstrip("th/sp:").rstrip("/.org"))
+
+# str1 = "Я изучаю Nython. Мне нравится Nython. Nython очень интересный язык программирования. New"
+# print(str1.replace("Nython", "Python", 2))
+
+
+# s = "-"
+# seq = ("a", "b", "c")
+# print(s.join(seq))  #  a-b-c
+#
+# print("..".join(['1', '2']))
+# print(":".join("Hello"))
+
+# print('Строка разделенная пробелами'.split("   "))
+# print('www.python.org.ru'.split(".", 1))
+# print('www.python.org'.rsplit("."))
+# print('www...python...org'.rsplit("."))
+
+# a = input("-> ").split()
+# print(a)
+# def name(name):
+#     print(f"{name[0]} {name[1][0]}.{name[2][0]}.")
+#
+#
+# a = input("Введите ФИО: ").split()
+# name(a)
+
+# s = "В строке заменить пробелы символом"
+# # lst = s.split()
+# # print(lst)
+# # st = "*".join(lst)
+# # print(st)
+#
+# print(s.replace(" ", "*"))
