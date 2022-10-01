@@ -3497,7 +3497,6 @@ import re
 
 import os
 
-
 # import os.path
 
 # print("Текущая директория:", os.getcwd())
@@ -3655,47 +3654,552 @@ import os
 # print(p2.__dict__)
 
 
-class Human:
-    name = "name"
-    birthday = "00.00.0000"
-    phone = "00-00-00"
-    country = "country"
-    city = "city"
-    address = "street, house"
+# class Human:
+#     name = "name"
+#     birthday = "00.00.0000"
+#     phone = "00-00-00"
+#     country = "country"
+#     city = "city"
+#     address = "street, house"
+#
+#     def print_info(self):
+#         print(" Персональные данные ".center(40, "*"))
+#         print(f"Имя: {self.name}\nДата рождения: {self.birthday}\n"
+#               f"Номер телефона: {self.phone}\nСтрана: {self.country}\n"
+#               f"Город: {self.city}\nДомашний адрес: {self.address}")
+#         print("=" * 40)
+#
+#     def input_info(self, first_name, birthday, phone, country, city, address):
+#         self.name = first_name
+#         self.birthday = birthday
+#         self.phone = phone
+#         self.country = country
+#         self.city = city
+#         self.address = address
+#
+#     def set_name(self, name):  # установить имя
+#         self.name = name
+#
+#     def get_name(self):  # получить имя
+#         return self.name
+#
+#     def set_birthday(self, birthday):
+#         self.birthday = birthday
+#
+#     def get_birthday(self):
+#         return self.birthday
+#
+#
+# h1 = Human()
+# h1.input_info("Юля", "23.05.1986", "45-46-98", "Россия", "Москва", "Чистопрудный бульвар, 1А")
+# h1.print_info()
+# h1.set_name("Валерия")
+# print(h1.get_name())
+# h1.set_birthday("12.04.2021")
+# print(h1.get_birthday())
 
-    def print_info(self):
-        print(" Персональные данные ".center(40, "*"))
-        print(f"Имя: {self.name}\nДата рождения: {self.birthday}\n"
-              f"Номер телефона: {self.phone}\nСтрана: {self.country}\n"
-              f"Город: {self.city}\nДомашний адрес: {self.address}")
-        print("=" * 40)
 
-    def input_info(self, first_name, birthday, phone, country, city, address):
-        self.name = first_name
-        self.birthday = birthday
-        self.phone = phone
-        self.country = country
-        self.city = city
-        self.address = address
+# class Point:
+#     x = 1
+#     y = 1
+#
+#
+# p1 = Point()
+# p1.x = 5
+# p1.y = 10
+# print(p1.__dict__)
+# print(p1.x)
+# print(getattr(p1, "x"))
+# # print(p1.z)
+# print(getattr(p1, "z", "Нет атрибута"))
+# print(hasattr(p1, "z"))
+# print(hasattr(p1, "y"))
+# # p1.z = 7
+# setattr(p1, "z", 7)
+# # setattr(Point, "z", 7)
+# delattr(p1, 'z')
+# print(p1.__dict__)
 
-    def set_name(self, name):  # установить имя
-        self.name = name
+# class Person:
+#     skill = 10
+#
+#     def __init__(self, name, surname):
+#         self.name = name
+#         self.surname = surname
+#
+#     def print_info(self):
+#         print("Данные сотрудника:", self.name, self.surname)
+#
+#     def add_skill(self, k):
+#         self.skill += k
+#         print("Квалификация сотрудника:", self.skill, "\n")
+#
+#
+# p1 = Person("Viktor", "Reznik")
+# p1.print_info()
+# p1.add_skill(3)
+#
+# p2 = Person("Anna", "Dilgih")
+# p2.print_info()
+# p2.add_skill(2)
 
-    def get_name(self):  # получить имя
-        return self.name
+# class Point:
+#     # def __new__(cls, *args, **kwargs):
+#     #     print("This is constructor!")
+#     #     return super().__new__(cls)
+#
+#     def __init__(self):
+#         print("This is initializator!")
+#
+#
+# p1 = Point()
 
-    def set_birthday(self, birthday):
-        self.birthday = birthday
 
-    def get_birthday(self):
-        return self.birthday
+# class Point:
+#
+#     def __init__(self, x=0, y=0):
+#         self.x = x
+#         self.y = y
+#
+#     def __del__(self):
+#         print("Удаление экземпляра: " + self.__class__.__name__)
+#
+#
+# p1 = Point(5, 10)
+# print(p1.__dict__)
+# del p1
+# print(p1.x)
 
 
-h1 = Human()
-h1.input_info("Юля", "23.05.1986", "45-46-98", "Россия", "Москва", "Чистопрудный бульвар, 1А")
-h1.print_info()
-h1.set_name("Валерия")
-print(h1.get_name())
-h1.set_birthday("12.04.2021")
-print(h1.get_birthday())
+# class Point:
+#     count = 0  # статические свойства
+#
+#     def __init__(self, x=0, y=0):  # динамические свойства
+#         self.x = x
+#         self.y = y
+#         Point.count += 1
+#
+#
+# p1 = Point(5, 10)
+# p2 = Point(15, 20)
+# p3 = Point(25, 30)
+# print(p1.count)
 
+
+# class Robot:
+#     k = 0
+#
+#     def __init__(self, name):
+#         self.name = name
+#         print("Инициализация робота:", self.name)
+#         Robot.k += 1
+#
+#     def __del__(self):
+#         print(self.name, "выключается!")
+#         Robot.k -= 1
+#         if Robot.k == 0:
+#             print(self.name, "был последним.")
+#         else:
+#             print("Работающих роботов осталось:", Robot.k)
+#
+#     def say_hi(self):
+#         print("Приветствую! Меня зовут:", self.name)
+#
+#
+# droid1 = Robot('R2-D2')
+# droid1.say_hi()
+# print("Численность роботов:", Robot.k)
+#
+# droid2 = Robot('С-3PO')
+# droid2.say_hi()
+# print("Численность роботов:", Robot.k)
+#
+# droid3 = Robot('R-4PO')
+# droid3.say_hi()
+# print("Численность роботов:", Robot.k)
+#
+# print("\nЗдесь роботы могут проделать какую-то работу\n")
+#
+# print("Роботы закончили свою работу. Давайте их выключим")
+# del droid1
+# del droid2
+# del droid3
+# print("Численность роботов:", Robot.k)
+
+
+# class Point:
+#     def __init__(self, x=0, y=0):
+#         self.__x = self.__y = 0
+#         if Point.__check_value(x) and Point.__check_value(y):
+#             self.__x = x
+#             self.__y = y
+#
+#     def __check_value(q):
+#         if isinstance(q, int) or isinstance(q, float):
+#             return True
+#         return False
+#
+#     def set_coords(self, x, y):
+#         if Point.__check_value(x) and Point.__check_value(y):
+#             self.__x = x
+#             self.__y = y
+#         else:
+#             print("Координаты должны быть числами")
+#
+#     def get_coords(self):
+#         return self.__x, self.__y
+#
+#     def set_x(self, x):
+#         if Point.__check_value(x):
+#             self.__x = x
+#         else:
+#             print("Координаты должны быть числами")
+#
+#     def set_y(self, y):
+#         if Point.__check_value(y):
+#             self.__y = y
+#         else:
+#             print("Координаты должны быть числами")
+#
+#     def get_x(self):
+#         return self.__x
+#
+#     def get_y(self):
+#         return self.__y
+#
+#
+# p1 = Point(5, 10)
+# print(p1.get_coords())
+# p1.set_coords(1, 2)
+# print(p1.get_coords())
+# # print(p1.__x, p1.__y)
+# # p1.__x = 100
+# # p1.__y = "abc"
+# # print(p1.__x, p1.__y)
+#
+# p1.set_x(8)
+# print(p1.get_x())
+# p1.set_y(13)
+# print(p1.get_y())
+# print(p1.__dict__)
+# print(p1._Point__x)
+# p1._Point__x = 111
+# print(p1.__dict__)
+
+# class Car:
+#     def __init__(self, name, year, model, power, color, price):
+#         self.__name = self.__model = self.__color = "Некорректные данные"
+#         self.__year = self.__power = self.__power = 0
+#         if Car.__check_value_str(name):
+#             self.__name = name
+#         if Car.__check_value_int(year):
+#             self.__year = year
+#         if Car.__check_value_str(model):
+#             self.__model = model
+#         if Car.__check_value_int(power):
+#             self.__power = power
+#         if Car.__check_value_str(color):
+#             self.__color = color
+#         if Car.__check_value_int(price):
+#             self.__price = price
+#
+#     def __check_value_int(s):
+#         if not isinstance(s, int):
+#             print("Данные должны быть числом")
+#             return False
+#         return True
+#
+#     def __check_value_str(s):
+#         if not isinstance(s, str):
+#             print("Данные должны быть строкой")
+#             return False
+#         return True
+#
+#     def set_name(self, name):
+#         if Car.__check_value_str(name):
+#             self.__name = name
+#
+#     def get_name(self):
+#         return self.__name
+#
+#     def print_info(self):
+#         print(" Данные автомобиля ".center(40, "*"))
+#         print(f"""Название модели: {self.__name}
+# Год выпуска: {self.__year}
+# Производитель: {self.__model}
+# Мощность двигателя: {self.__power} л.с.
+# Цвет машины: {self.__color}
+# Цена: {self.__price}
+# """)
+#
+#
+# c1 = Car('X7 M50i', "2021", 'BMW', 530, 'white', 10790000)
+# c1.print_info()
+# c1.set_name('X2')
+# print(c1.get_name())
+# c1.print_info()
+
+
+# from math import sqrt
+#
+#
+# class Rectangle:
+#     def __init__(self, l=0, w=0):
+#         self.__l = l
+#         self.__w = w
+#
+#     def get_l(self):
+#         return self.__l
+#
+#     def get_w(self):
+#         return self.__w
+#
+#     def get_rectangle_area(self):
+#         res = self.__l * self.__w
+#         print("Площадь прямоугольника:", res)
+#
+#     def square(self):
+#         res1 = (self.__l + self.__w) * 2
+#         print("Периметр прямоугольника:", res1)
+#
+#     def hypotenuse(self):
+#         res2 = sqrt(self.__l ** 2 + self.__w ** 2)
+#         print("Гипотенуза прямоугольника:", round(res2, 2))
+#
+#     def figur(self):
+#         # for i in range(self.__l):
+#         #     for j in range(self.__w):
+#         #         print('*', end='')
+#         #     print()
+#         print(("*" * self.__w + "\n") * self.__l)
+#
+#
+# p = Rectangle(3, 9)
+# print("Длина прямоугольника", p.get_l())
+# print("Ширина прямоугольника", p.get_w())
+# p.get_rectangle_area()
+# p.square()
+# p.hypotenuse()
+# p.figur()
+
+
+# class Point:
+#     __slots__ = ['x', 'y', 'z']
+#
+#     def __init__(self, x=0, y=0):
+#         self.x = x
+#         self.y = y
+#
+#
+# p1 = Point(5, 10)
+# p1.z = 2
+# print(p1.z)
+# print(p1.__dict__)
+
+
+# class Point:
+#
+#     def __init__(self, x=0, y=0):
+#         self.__x = x
+#         self.__y = y
+#
+#     def __set_x(self, x):
+#         print("Вызов __set_x")
+#         self.__x = x
+#
+#     def __get_x(self):
+#         print("Вызов __get_x")
+#         return self.__x
+#
+#     def __del_x(self):
+#         print("Удаление свойства")
+#         del self.__x
+#
+#     coord_x = property(__get_x, __set_x, __del_x)
+#
+#
+# p1 = Point(5, 10)
+# p1.coord_x = 100
+# print(p1.coord_x)
+# del p1.coord_x
+# p1.coord_x = 7
+# print(p1.__dict__)
+
+
+# class Point:
+#
+#     def __init__(self, x=0, y=0):
+#         self.__x = x
+#         self.__y = y
+#
+#     @property
+#     def coord_x(self):  # __get_x
+#         print("Вызов __get_x")
+#         return self.__x
+#
+#     @coord_x.setter
+#     def coord_x(self, x):  # __set_x
+#         print("Вызов __set_x")
+#         self.__x = x
+#
+#     @coord_x.deleter
+#     def coord_x(self):  # __del_x
+#         print("Удаление свойства")
+#         del self.__x
+#
+#     # coord_x = property(__get_x, __set_x, __del_x)
+#
+#
+# p1 = Point(5, 10)
+# p1.coord_x = 100
+# print(p1.coord_x)
+# del p1.coord_x
+# p1.coord_x = 7
+# print(p1.__dict__)
+
+
+# class Person:
+#     def __init__(self, name, old):
+#         self.__name = name
+#         self.__old = old
+#
+#     @property
+#     def name(self):
+#         return self.__name
+#
+#     @name.setter
+#     def name(self, n):
+#         self.__name = n
+#
+#     @name.deleter
+#     def name(self):
+#         del self.__name
+#
+#     @property
+#     def old(self):
+#         return self.__old
+#
+#     @old.setter
+#     def old(self, new_old):
+#         self.__old = new_old
+#
+#     @old.deleter
+#     def old(self):
+#         del self.__old
+#
+#
+# p1 = Person('Irina', 26)
+# print(p1.name)
+# p1.name = 'Igor'
+# del p1.name
+# p1.old = 31
+# print(p1.old)
+# del p1.old
+# print(p1.__dict__)
+
+
+# class Point:
+#     __count = 0  # статическое свойство
+#
+#     def __init__(self, x=0, y=0):
+#         self.__x = x
+#         self.__y = y
+#         Point.__count += 1
+#
+#     @staticmethod
+#     def get_count():
+#         return Point.__count
+#
+#
+# p1 = Point()
+# print("p1 =", Point.get_count())
+# p2 = Point()
+# print("p2 =", Point.get_count())
+# p3 = Point()
+# print("p3 =", p1.get_count())
+
+
+# class Point:
+#     __count = 0  # статическое свойство
+#
+#     def __init__(self, x=0, y=0):
+#         self.__x = x
+#         self.__y = y
+#         Point.__count += 1
+#
+#     # @staticmethod
+#     def get_count():
+#         return Point.__count
+#
+#     get_count = staticmethod(get_count)
+#
+#
+# p1 = Point()
+# print("p1 =", Point.get_count())
+# p2 = Point()
+# print("p2 =", Point.get_count())
+# p3 = Point()
+# print("p3 =", p1.get_count())
+
+
+# class Change:
+#     @staticmethod
+#     def inc(x):
+#         return x + 1
+#
+#     @staticmethod
+#     def dec(x):
+#         return x - 1
+#
+#
+# print(Change.inc(10), Change.dec(10))
+
+
+class Date:
+    def __init__(self, day=0, month=0, year=0):
+        self.day = day
+        self.month = month
+        self.year = year
+
+    def string_to_db(self):
+        return f'{self.year}-{self.month}-{self.day}'
+
+    @classmethod
+    def from_string(cls, data_as_string):
+        d, m, y = map(int, data_as_string.split('.'))
+        return cls(d, m, y)
+
+    @staticmethod
+    def is_date_valid(data_as_string):
+        if data_as_string.count('.') == 2:
+            d, m, y = map(int, data_as_string.split('.'))
+            return d <= 31 and m <= 12 and y <= 3999
+
+
+dates = [
+    '30.12.2020',
+    '30.12.2020',
+    '31.01.2021',
+    '12.31.2020'
+]
+
+for string_date in dates:
+    if Date.is_date_valid(string_date):
+        date = Date.from_string(string_date)  # '30.12.2020'
+        string_to_db = date.string_to_db()
+        print(string_to_db)
+    else:
+        print("Некорректная дата")
+
+
+
+# d1 = Date.from_string('12.11.2022')
+# print(d1.string_to_db())
+#
+# d2 = Date.from_string('30.04.2021')
+# print(d2.string_to_db())
+
+# string_date = '12.11.2022'
+# d, m, y = map(int, string_date.split('.'))
+# date1 = Date(d, m, y)
+# print(date1.string_to_db())
