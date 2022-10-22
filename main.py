@@ -5385,77 +5385,95 @@ import os
 
 # 24*60*60 = 86400 (число секунд в одном дне)
 
-class Clock:
-    __DAY = 86400
-
-    def __init__(self, sec: int):
-        if not isinstance(sec, int):
-            raise ValueError("Секунды должны быть целым числом")
-
-        self.sec = sec % self.__DAY
-
-    def __add__(self, other):
-        if not isinstance(other, Clock):
-            raise ArithmeticError("Правый операнд должен быть типом данных Clock")
-        return Clock(self.sec + other.sec)
-
-    def __sub__(self, other):
-        if not isinstance(other, Clock):
-            raise ArithmeticError("Правый операнд должен быть типом данных Clock")
-        return Clock(self.sec - other.sec)
-
-    def __mul__(self, other):
-        if not isinstance(other, Clock):
-            raise ArithmeticError()
-        return Clock(self.sec * other.sec)
-
-    def __floordiv__(self, other):
-        if not isinstance(other, Clock):
-            raise ArithmeticError()
-        return Clock(self.sec // other.sec)
-
-    def __mod__(self, other):
-        if not isinstance(other, Clock):
-            raise ArithmeticError()
-        return Clock(self.sec % other.sec)
-
-    def __eq__(self, other):
-        return self.sec == other.sec
-
-    def __ne__(self, other):
-        return not self.__eq__(other)
-
-    def __gt__(self, other):
-        return self.sec > other.sec
-
-    def get_format_time(self):
-        s = self.sec % 60  # секунды
-        m = (self.sec // 60) % 60  # минуты
-        h = (self.sec // 3600) % 24  # часы
-        return f'{Clock.__get_form(h)}:{Clock.__get_form(m)}:{Clock.__get_form(s)}'
-
-    @staticmethod
-    def __get_form(x):
-        return str(x) if x > 9 else "0" + str(x)
-
-    def __getitem__(self, item):
-        if not isinstance(item, str):
-            raise ValueError("Ключ должен быть строкой")
-
-        if item == "hour":
-            return (self.sec // 3600) % 24
-        elif item == "min":
-            return (self.sec // 60) % 60
-        elif item == "sec":
-            return self.sec % 60
-
-        return "Неверный ключ"
-
-
-c1 = Clock(80000)
-print(c1.get_format_time())
-с1["hour"] = 12
-print(c1["hour"], c1["min"], c1["sec"])
+# class Clock:
+#     __DAY = 86400
+#
+#     def __init__(self, sec: int):
+#         if not isinstance(sec, int):
+#             raise ValueError("Секунды должны быть целым числом")
+#
+#         self.sec = sec % self.__DAY
+#
+#     def __add__(self, other):
+#         if not isinstance(other, Clock):
+#             raise ArithmeticError("Правый операнд должен быть типом данных Clock")
+#         return Clock(self.sec + other.sec)
+#
+#     def __sub__(self, other):
+#         if not isinstance(other, Clock):
+#             raise ArithmeticError("Правый операнд должен быть типом данных Clock")
+#         return Clock(self.sec - other.sec)
+#
+#     def __mul__(self, other):
+#         if not isinstance(other, Clock):
+#             raise ArithmeticError()
+#         return Clock(self.sec * other.sec)
+#
+#     def __floordiv__(self, other):
+#         if not isinstance(other, Clock):
+#             raise ArithmeticError()
+#         return Clock(self.sec // other.sec)
+#
+#     def __mod__(self, other):
+#         if not isinstance(other, Clock):
+#             raise ArithmeticError()
+#         return Clock(self.sec % other.sec)
+#
+#     def __eq__(self, other):
+#         return self.sec == other.sec
+#
+#     def __ne__(self, other):
+#         return not self.__eq__(other)
+#
+#     def __gt__(self, other):
+#         return self.sec > other.sec
+#
+#     def get_format_time(self):
+#         s = self.sec % 60  # секунды
+#         m = (self.sec // 60) % 60  # минуты
+#         h = (self.sec // 3600) % 24  # часы
+#         return f'{Clock.__get_form(h)}:{Clock.__get_form(m)}:{Clock.__get_form(s)}'
+#
+#     @staticmethod
+#     def __get_form(x):
+#         return str(x) if x > 9 else "0" + str(x)
+#
+#     def __getitem__(self, item):
+#         if not isinstance(item, str):
+#             raise ValueError("Ключ должен быть строкой")
+#
+#         if item == "hour":
+#             return (self.sec // 3600) % 24
+#         elif item == "min":
+#             return (self.sec // 60) % 60
+#         elif item == "sec":
+#             return self.sec % 60
+#
+#         return "Неверный ключ"
+#
+#     def __setitem__(self, key, value):
+#         if not isinstance(key, str):
+#             raise ValueError("Ключ должен быть строкой")
+#         if not isinstance(value, int):
+#             raise ValueError("Значение должно быть целым числом ")
+#         s = self.sec % 60  # секунды
+#         m = (self.sec // 60) % 60  # минуты
+#         h = (self.sec // 3600) % 24  # часы
+#         if key == "hour":
+#             self.sec = s + 60 * m + value * 3600
+#         elif key == "min":
+#             self.sec = s + 60 * value + h * 3600
+#         elif key == "sec":
+#             self.sec = value + 60 * m + h * 3600
+#
+#
+# c1 = Clock(80000)
+# print(c1.get_format_time())
+# c1["hour"] = 12
+# c1["min"] = 20
+# c1["sec"] = 130
+# print(c1["hour"], c1["min"], c1["sec"])
+# print(c1.get_format_time())
 # c2 = Clock(50)
 # print(c2.get_format_time())
 # c1 += c2
@@ -5503,3 +5521,250 @@ print(c1["hour"], c1["min"], c1["sec"])
 # del s1[2]
 # print(s1.marks)
 
+
+# class Point3D:
+#     CH = "Координата должна быть числом"
+#     RIGHT = "Правый операнд должен быть типом Point3D"
+#
+#     def __init__(self, x=0, y=0, z=0):
+#         self.x = x
+#         self.y = y
+#         self.z = z
+#
+#     def __str__(self):
+#         return f"{self.__x}, {self.__y}, {self.__z}"
+#
+#     @staticmethod
+#     def __check_value(v):
+#         return isinstance(v, int) or isinstance(v, float)
+#
+#     @property
+#     def x(self):
+#         return self.__x
+#
+#     @x.setter
+#     def x(self, value):
+#         if self.__check_value(value):
+#             self.__x = value
+#         else:
+#             print(self.CH)
+#
+#     @property
+#     def y(self):
+#         return self.__y
+#
+#     @y.setter
+#     def y(self, value):
+#         if self.__check_value(value):
+#             self.__y = value
+#         else:
+#             print(self.CH)
+#
+#     @property
+#     def z(self):
+#         return self.__z
+#
+#     @z.setter
+#     def z(self, value):
+#         if self.__check_value(value):
+#             self.__z = value
+#         else:
+#             print(self.CH)
+#
+#     def __add__(self, other):
+#         if not isinstance(other, Point3D):
+#             raise ValueError(self.RIGHT)
+#         else:
+#             return Point3D(self.__x + other.x, self.__y + other.y, self.__z + other.z)
+#
+#     def __sub__(self, other):
+#         if not isinstance(other, Point3D):
+#             raise ValueError(self.RIGHT)
+#         else:
+#             return Point3D(self.__x - other.x, self.__y - other.y, self.__z - other.z)
+#
+#     def __mul__(self, other):
+#         if not isinstance(other, Point3D):
+#             raise ValueError(self.RIGHT)
+#         else:
+#             return Point3D(self.__x * other.x, self.__y * other.y, self.__z * other.z)
+#
+#     @staticmethod
+#     def __check0(exemplar):
+#         if exemplar.x == 0 or exemplar.y == 0 or exemplar.z == 0:
+#             raise ZeroDivisionError("Ни одна из координат второго операнда не должна быть равна 0")
+#
+#     def __truediv__(self, other):
+#         if not isinstance(other, Point3D):
+#             raise ValueError(self.RIGHT)
+#         self.__check0(other)
+#         return Point3D(self.__x / other.x, self.__y / other.y, self.__z / other.z)
+#
+#     def __eq__(self, other):
+#         if not isinstance(other, Point3D):
+#             raise ValueError(self.RIGHT)
+#         return self.__x == other.x and self.__y == other.y and self.__z == other.z
+#
+#     def __getitem__(self, item):
+#         if not isinstance(item, str):
+#             raise ValueError("Ключ должен быть строкой")
+#         elif item == 'x':
+#             return self.__x
+#         elif item == 'y':
+#             return self.__y
+#         elif item == 'z':
+#             return self.__z
+#         else:
+#             print("Неверно задан ключ")
+#
+#     def __setitem__(self, key, value):
+#         if not isinstance(key, str):
+#             raise ValueError("Ключ должен быть строкой")
+#         if self.__check_value(value):
+#             if key == 'x':
+#                 self.__x = value
+#             elif key == 'y':
+#                 self.__y = value
+#             elif key == 'z':
+#                 self.__z = value
+#         else:
+#             print("Координаты должны быть числами")
+#
+#
+# pt1 = Point3D(12, 15, 18)
+# pt2 = Point3D(6, 3, 9)
+# print("Координаты 1-й точки: ", pt1)
+# print("Координаты 2-й точки: ", pt2)
+#
+# pt3 = pt1 + pt2
+# print(f"Сложение координат: ({pt3})")
+#
+# pt4 = pt1 - pt2
+# print(f"Разность координат: ({pt4})")
+#
+# pt5 = pt1 * pt2
+# print(f"Произведение координат: ({pt5})")
+#
+# pt6 = pt1 / pt2
+# print(f"Частное координат: ({pt6})")
+#
+# print(f"Равенство координат: {pt1 == pt2}")
+#
+# print("x =", pt1['x'], "x1 =", pt2['x'])
+# print("y =", pt1['y'], "y1 =", pt2['y'])
+# print("z =", pt1['z'], "z1 =", pt2['z'])
+#
+# pt1['x'] = 20
+# print("Запись значения в координату x:", pt1['x'])
+
+
+# Полиморфизм
+
+# class Rectangle:
+#     def __init__(self, w, h):
+#         self.w = w
+#         self.h = h
+#
+#     def get_perimetr(self):
+#         return 2 * (self.w + self.h)
+#
+#
+# class Square:
+#     def __init__(self, a):
+#         self.a = a
+#
+#     def get_perimetr(self):
+#         return 4 * self.a
+#
+#
+# class Triangle:
+#     def __init__(self, a, b, c):
+#         self.a = a
+#         self.b = b
+#         self.c = c
+#
+#     def get_perimetr(self):
+#         return self.a + self.b + self.c
+#
+#
+# r1 = Rectangle(1, 2)
+# r2 = Rectangle(3, 4)
+# # print(r1.get_per_rect(), r2.get_per_rect())
+#
+# s1 = Square(10)
+# s2 = Square(20)
+# # print(s1.get_per_sq(), s2.get_per_sq())
+#
+# t1 = Triangle(1, 2, 3)
+# t2 = Triangle(4, 5, 6)
+#
+# shape = [r1, r2, s1, s2, t1, t2]
+# for g in shape:
+#     print(g.get_perimetr())
+# if isinstance(g, Rectangle):
+#     print(g.get_per_rect())
+# else:
+#     print(g.get_per_sq())
+
+
+# class Number:
+#     def __init__(self, value):
+#         self.value = value
+#
+#     def total(self, a):
+#         return self.value + int(a)
+#
+#
+# class Text:
+#     def __init__(self, value):
+#         self.value = value
+#
+#     def total(self, a):
+#         return len(self.value + str(a))  #  "Python" + "35" = "Python35"
+#
+#
+# t1 = Number(10)
+# t2 = Text("Python")
+# print(t1.total(35))
+# print(t2.total(35))
+
+
+# group = [
+#     Student("Батодалаев", "Даши", 16, "ГК", "Web_011", 5),
+#     Student("Загидуллин", "Линар", 32, "РПО", "PD_011", 5),
+#     Graduate("Шугани", "Сергей", 15, "РПО", "PD_011", 5, "Защита персональных данных"),
+#     Teacher("Даньшин", "Андрей", 38, "Астрофизика", 110),
+#     Student("Маркин", "Даниил", 17, "ГК", "Python_011", 5),
+#     Teacher("Башкиров", "Алексей", 45, "Разработка приложений", 20)
+# ]
+
+
+# class Dog:
+#     def __init__(self, name, age):
+#         self.name = name
+#         self.age = age
+#
+#     def info(self):
+#         return f'Я собака. Меня зовут {self.name}. Мой возраст {self.age}'
+#
+#     def make_sound(self):
+#         return f'{self.name} гавкает'
+#
+#
+# class Cat:
+#     def __init__(self, name, age):
+#         self.name = name
+#         self.age = age
+#
+#     def info(self):
+#         return f'Я кот. Меня зовут {self.name}. Мой возраст {self.age}'
+#
+#     def make_sound(self):
+#         return f'{self.name} мяукает'
+#
+#
+# cat = Cat('Пушок', 2.5)
+# dog = Dog('Мухтар', 4)
+# # s = [cat, dog]
+# for i in (cat, dog):
+#     print(i.info(), '\n', i.make_sound())
