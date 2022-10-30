@@ -3497,7 +3497,6 @@ import re
 
 import os
 
-
 # import os.path
 
 # print("Текущая директория:", os.getcwd())
@@ -6399,26 +6398,216 @@ import os
 # import geometry.sq
 # import geometry.trian
 
-from geometry import rect, sq, trian
+# from geometry import rect, sq, trian
 # import geometry
 
 # from geometry import *
 
-r1 = rect.Rectangle(1, 2)
-r2 = rect.Rectangle(3, 4)
+# r1 = rect.Rectangle(1, 2)
+# r2 = rect.Rectangle(3, 4)
+#
+# s1 = sq.Square(10)
+# s2 = sq.Square(20)
+#
+# t1 = trian.Triangle(1, 2, 3)
+# t2 = trian.Triangle(4, 5, 6)
+#
+# shape = [r1, r2, s1, s2, t1, t2]
+# for g in shape:
+#     print(g.get_perimetr())
 
-s1 = sq.Square(10)
-s2 = sq.Square(20)
+# class Integer:
+#     @classmethod
+#     def verify(cls, coord):
+#         if not isinstance(coord, int) or coord <= 0:
+#             raise TypeError(f"Координата {coord} должна быть положительным целым числом")
+#
+#     def __set_name__(self, owner, name):
+#         self.name = "_" + name
+#
+#     def __get__(self, instance, owner):
+#         return getattr(instance, self.name)
+#
+#     def __set__(self, instance, value):
+#         self.verify(value)
+#         setattr(instance, self.name, value)
+#
+#
+# class Triangle:
+#     __a = Integer()
+#     b = Integer()
+#     c = Integer()
+#
+#     def __init__(self, a, b, c):
+#         self.__a = a
+#         self.b = b
+#         self.c = c
+#
+#     def existence(self):
+#         if (self.__a + self.b > self.c) and (self.__a + self.c > self.b) and (self.b + self.c > self.__a):
+#             return "существует"
+#         else:
+#             return "не существует"
+#
+#     def info(self):
+#         print(f"Треугольник со сторонами ({self.__a}, {self.b}, {self.c}) {self.existence()}")
+#
+#
+# t1 = Triangle(2, 5, 6)
+# t2 = Triangle(5, 2, 8)
+# t3 = Triangle(7, 3, 6)
+#
+# tr = [t1, t2, t3]
+# for i in tr:
+#     i.info()
+# t1.info()
+# t2.info()
+# t3.info()
 
-t1 = trian.Triangle(1, 2, 3)
-t2 = trian.Triangle(4, 5, 6)
 
-shape = [r1, r2, s1, s2, t1, t2]
-for g in shape:
-    print(g.get_perimetr())
+# from car import electrocar
+#
+#
+# def main():
+#     e_car = electrocar.ElectroCar('Tesla', "T", 2018, 99000)
+#     e_car.show_car()
+#     e_car.description_battery()
+#
+#
+# if __name__ == '__main__':
+#     main()
 
 
+# from math import pi
+#
+#
+# class Rectangle:
+#     def __init__(self, l, h):
+#         self.l = l
+#         self.h = h
+#
+#     def get_rect_perimetr(self):
+#         res = self.l * 2 + self.h * 2
+#         print(f"Периметр прямоугольника: {res}")
+#         return res
+#
+#     def get_rect_area(self):
+#         res = self.l * self.h
+#         print(f"Площадь прямоугольника: {res}")
+#         return res
+#
+#     def print_rect(self):
+#         print(f"Стороны прямоугольника: {self.l}, {self.h}")
+#         return {self.l, self.h}
+#
+#
+# class Circle:
+#     def __init__(self, r):
+#         self.r = r
+#
+#     def get_circle_circumference(self):
+#         res = 2 * pi * self.r
+#         print(f"Длина окружности: {round(res, 2)}")
+#         return res
+#
+#     def get_circle_area(self):
+#         res = round(pi * self.r ** 2, 2)
+#         print(f"Площадь круга: {res}")
+#         return res
+#
+#     def print_circle(self):
+#         print(f"Радиус круга: {self.r}")
+#         return self.r
+#
+#
+# class Cylinder(Rectangle, Circle):
+#     def __init__(self, r, h):
+#         Circle.__init__(self, r)
+#         Rectangle.__init__(self, self.get_circle_circumference(), h)
+#
+#     def get_volume(self):
+#         res = self.get_circle_area() * self.h
+#         print(f"Объем: {res}")
+#         return res
+#
+#     def print_cylinder(self):
+#         print(f"Радиус основания: {self.r}, высота: {self.h}")
+#
+#
+# circles = [Circle(4), Circle(2), Circle(6), Circle(8), Circle(1)]
+# rects = [Rectangle(3, 7), Rectangle(2, 7), Rectangle(19, 12)]
+# cylinders = [Cylinder(4, 7), Cylinder(2, 5), Cylinder(9, 3), Cylinder(5, 5)]
+#
+# circle_max_s = max(circles, key=lambda c: c.get_circle_area())
+# rect_min_p = min(rects, key=lambda r: r.get_rect_perimetr())
+# cylinders_v = list(map(lambda c: c.get_volume(), cylinders))
+# cylinder_v_avr = sum(cylinders_v) / len(cylinders_v)
+# print(f"Окружность с наибольшей площадью: {circle_max_s.print_circle()} = {circle_max_s.get_circle_area()}")
+# print(f'Прямоугольник с наименьшим периметром: {rect_min_p.print_rect()} = {rect_min_p.get_rect_perimetr()}')
+# print(f"Средний объем цилиндров: {round(cylinder_v_avr, 2)}")
 
 
+# from shapes import rectangle, circle, cylinder
+#
+# circles = [circle.Circle(4), circle.Circle(2), circle.Circle(6), circle.Circle(8), circle.Circle(1)]
+# rects = [rectangle.Rectangle(3, 7), rectangle.Rectangle(2, 7), rectangle.Rectangle(19, 12)]
+# cylinders = [cylinder.Cylinder(4, 7), cylinder.Cylinder(2, 5), cylinder.Cylinder(9, 3), cylinder.Cylinder(5, 5)]
+#
+# circle_max_s = max(circles, key=lambda c: c.get_circle_area())
+# rect_min_p = min(rects, key=lambda r: r.get_rect_perimetr())
+# cylinders_v = list(map(lambda c: c.get_volume(), cylinders))
+# cylinder_v_avr = sum(cylinders_v) / len(cylinders_v)
+# print(f"Окружность с наибольшей площадью: {circle_max_s.print_circle()} = {circle_max_s.get_circle_area()}")
+# print(f'Прямоугольник с наименьшим периметром: {rect_min_p.print_rect()} = {rect_min_p.get_rect_perimetr()}')
+# print(f"Средний объем цилиндров: {round(cylinder_v_avr, 2)}")
 
 
+# Упаковка данных
+# Сериализация
+# Десериализация
+
+# В стандартной библиотеке Python
+# marshal (.pyc)
+# pickle
+# json
+
+import pickle
+
+
+# filename = "basket.txt"
+#
+# shop_list = {
+#     'фрукты': ['яблоки', 'манго'],
+#     'овощи': ['морковь'],
+#     'бюджет': 100
+# }
+#
+# with open(filename, 'wb') as fh:
+#     pickle.dump(shop_list, fh)
+#
+#
+# with open(filename, 'rb') as fh:
+#     shop_list_2 = pickle.load(fh)
+#
+# print(shop_list_2)
+
+
+class Test:
+    num = 35
+    st = "Привет"
+    lst = [1, 2, 3]
+    dct = {'first': "a", 'second': 2, 'third': [1, 2, 3]}
+    tpl = (22, 23)
+
+    def __str__(self):
+        return f"Число: {Test.num}\nСтрока: {Test.st}\nСписок: {Test.lst}\nСловарь: {Test.dct}\nКортеж: {Test.tpl}"
+
+
+obj = Test()
+# print(obj)
+
+d_save = pickle.dumps(obj)
+print(f"Сереализация в строку:\n{d_save}\n")
+
+d_read = pickle.loads(d_save)
+print(f"Десереализация в строку:\n{d_read}\n")
