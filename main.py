@@ -6478,75 +6478,6 @@ import os
 #     main()
 
 
-# from math import pi
-#
-#
-# class Rectangle:
-#     def __init__(self, l, h):
-#         self.l = l
-#         self.h = h
-#
-#     def get_rect_perimetr(self):
-#         res = self.l * 2 + self.h * 2
-#         print(f"Периметр прямоугольника: {res}")
-#         return res
-#
-#     def get_rect_area(self):
-#         res = self.l * self.h
-#         print(f"Площадь прямоугольника: {res}")
-#         return res
-#
-#     def print_rect(self):
-#         print(f"Стороны прямоугольника: {self.l}, {self.h}")
-#         return {self.l, self.h}
-#
-#
-# class Circle:
-#     def __init__(self, r):
-#         self.r = r
-#
-#     def get_circle_circumference(self):
-#         res = 2 * pi * self.r
-#         print(f"Длина окружности: {round(res, 2)}")
-#         return res
-#
-#     def get_circle_area(self):
-#         res = round(pi * self.r ** 2, 2)
-#         print(f"Площадь круга: {res}")
-#         return res
-#
-#     def print_circle(self):
-#         print(f"Радиус круга: {self.r}")
-#         return self.r
-#
-#
-# class Cylinder(Rectangle, Circle):
-#     def __init__(self, r, h):
-#         Circle.__init__(self, r)
-#         Rectangle.__init__(self, self.get_circle_circumference(), h)
-#
-#     def get_volume(self):
-#         res = self.get_circle_area() * self.h
-#         print(f"Объем: {res}")
-#         return res
-#
-#     def print_cylinder(self):
-#         print(f"Радиус основания: {self.r}, высота: {self.h}")
-#
-#
-# circles = [Circle(4), Circle(2), Circle(6), Circle(8), Circle(1)]
-# rects = [Rectangle(3, 7), Rectangle(2, 7), Rectangle(19, 12)]
-# cylinders = [Cylinder(4, 7), Cylinder(2, 5), Cylinder(9, 3), Cylinder(5, 5)]
-#
-# circle_max_s = max(circles, key=lambda c: c.get_circle_area())
-# rect_min_p = min(rects, key=lambda r: r.get_rect_perimetr())
-# cylinders_v = list(map(lambda c: c.get_volume(), cylinders))
-# cylinder_v_avr = sum(cylinders_v) / len(cylinders_v)
-# print(f"Окружность с наибольшей площадью: {circle_max_s.print_circle()} = {circle_max_s.get_circle_area()}")
-# print(f'Прямоугольник с наименьшим периметром: {rect_min_p.print_rect()} = {rect_min_p.get_rect_perimetr()}')
-# print(f"Средний объем цилиндров: {round(cylinder_v_avr, 2)}")
-
-
 # from shapes import rectangle, circle, cylinder
 #
 # circles = [circle.Circle(4), circle.Circle(2), circle.Circle(6), circle.Circle(8), circle.Circle(1)]
@@ -6573,7 +6504,6 @@ import os
 
 import pickle
 
-
 # filename = "basket.txt"
 #
 # shop_list = {
@@ -6592,22 +6522,223 @@ import pickle
 # print(shop_list_2)
 
 
-class Test:
-    num = 35
-    st = "Привет"
-    lst = [1, 2, 3]
-    dct = {'first': "a", 'second': 2, 'third': [1, 2, 3]}
-    tpl = (22, 23)
+# class Test:
+#     num = 35
+#     st = "Привет"
+#     lst = [1, 2, 3]
+#     dct = {'first': "a", 'second': 2, 'third': [1, 2, 3]}
+#     tpl = (22, 23)
+#
+#     def __str__(self):
+#         return f"Число: {Test.num}\nСтрока: {Test.st}\nСписок: {Test.lst}\nСловарь: {Test.dct}\nКортеж: {Test.tpl}"
+#
+#
+# obj = Test()
+# # print(obj)
+#
+# d_save = pickle.dumps(obj)
+# print(f"Сереализация в строку:\n{d_save}\n")
+#
+# d_read = pickle.loads(d_save)
+# print(f"Десереализация в строку:\n{d_read}\n")
+
+# class Test2:
+#     def __init__(self):
+#         self.a = 35
+#         self.b = 'test'
+#         self.c = lambda x: x * x
+#
+#     def __str__(self):
+#         return f"{self.a} {self.b} {self.c(2)}"
+#
+#     def __getstate__(self):
+#         attr = self.__dict__.copy()
+#         del attr['c']
+#         return attr
+#
+#     def __setstate__(self, state):
+#         self.__dict__ = state
+#         self.c = lambda x: x * x
+#
+#
+# item1 = Test2()
+# item2 = pickle.dumps(item1)   # __getstate__
+# item3 = pickle.loads(item2)  # __setstate__
+#
+# print(item3.__dict__)
+# print(item3)
+
+# class TextReader:
+#     def __init__(self, filename):
+#         self.filename = filename
+#         self.file = open(filename)
+#         self.count = 0
+#
+#     def read_line(self):
+#         self.count += 1
+#         line = self.file.readline()
+#         if not line:
+#             return None
+#         if line.endswith('\n'):
+#             line = line[:-1]
+#         return f"{self.count}: {line}"
+#
+#     def __getstate__(self):
+#         state = self.__dict__.copy()
+#         del state['file']
+#         return state
+#
+#     def __setstate__(self, state):
+#         self.__dict__.update(state)
+#         file = open(self.filename)
+#         for i in range(self.count):
+#             file.readline()
+#         self.file = file
+#
+#
+# reader = TextReader("hello.txt")
+# print(reader.read_line())
+# print(reader.read_line())
+# print(reader.read_line())
+#
+# new_reader = pickle.loads(pickle.dumps(reader))
+# print(new_reader.read_line())
+# print(new_reader.read_line())
+
+# import json
+
+# data = {
+#     'first_name': 'Jane',  # fgdfg
+#     ('second_name', 'surname'): ('Sergeevna', 'Doe'),
+#     'hobbies': ('running', 'sky diving', 'singing'),
+#     'age': 35,
+#     'children': [
+#         {
+#             'first_name': 'Alice',
+#             'age': 6
+#         },
+#         {
+#             'first_name': 'Bob',
+#             'age': 8
+#         },
+#     ],
+# }
+# print(data)
+# with open('data_file.json', 'w') as fw:
+#     json.dump(data, fw, indent=4)
+
+# with open('data_file.json', 'r') as fw:
+#     data = json.load(fw)
+#     print(data)
+
+# json_string = json.dumps(data, sort_keys=True)
+# print(json_string)
+#
+# data = json.loads(json_string)
+# print(data)
+
+# x = {
+#     "name": "Виктор"
+# }
+# y = {
+#     "name": "Виктор"
+# }
+#
+# print(json.dumps(x))
+# print(json.loads(json.dumps(x)))
+# print(json.dumps(y, ensure_ascii=False))
+
+import json
+
+
+# from random import choice
+#
+#
+# def gen_person():
+#     name = ''
+#     tel = ''
+#
+#     letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+#     nums = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+#
+#     while len(name) != 7:
+#         name += choice(letters)
+#     # print(name)
+#
+#     while len(tel) != 10:
+#         tel += choice(nums)
+#     # print(tel)
+#
+#     person = {
+#         'name': name,
+#         'tel': tel
+#     }
+#     return person
+#
+#
+# def write_json(person_dict):
+#     try:
+#         data = json.load(open('persons.json'))
+#     except FileNotFoundError:
+#         data = []
+#
+#     data.append(person_dict)
+#
+#     with open('persons.json', 'w') as f:
+#         json.dump(data, f, indent=2)
+#
+#
+# for i in range(5):
+#     write_json(gen_person())
+
+
+class Student:
+    def __init__(self, name, marks):
+        self.name = name
+        self.marks = marks
 
     def __str__(self):
-        return f"Число: {Test.num}\nСтрока: {Test.st}\nСписок: {Test.lst}\nСловарь: {Test.dct}\nКортеж: {Test.tpl}"
+        a = ''
+        for i in self.marks:
+            a += str(i) + ", "
+        return f"Студент: {self.name} {a[:-2]}"
+
+    def add_mark(self, mark):
+        self.marks.append(mark)
+
+    def delete_mark(self, index):
+        self.marks.pop(index)
+
+    def edit_mark(self, index, new_mark):
+        self.marks[index] = new_mark
+
+    def average_mark(self):
+        return round(sum(self.marks) / len(self.marks), 2)
 
 
-obj = Test()
-# print(obj)
+class Group:
+    def __init__(self, students, group):
+        self.students = students
+        self.group = group
 
-d_save = pickle.dumps(obj)
-print(f"Сереализация в строку:\n{d_save}\n")
+    def __str__(self):
+        a = ''
+        for i in self.students:
+            a += str(i) + "\n"
+        return f"Группа: {self.group}\n{a}"
 
-d_read = pickle.loads(d_save)
-print(f"Десереализация в строку:\n{d_read}\n")
+
+st1 = Student('Bodnya', [5, 4, 3, 4, 5, 3])
+st2 = Student('Nikolaenko', [2, 3, 5, 4, 2])
+st3 = Student('Birukov', [3, 5, 3, 2, 5, 4])
+sts = [st1, st2]
+my_group = Group(sts, "ГК Python")
+print(my_group)
+# print(st1)
+# st1.add_mark(4)
+# print(st1)
+# st1.delete_mark(3)
+# print(st1)
+# st1.edit_mark(2, 4)
+# print(st1)
+# print(st1.average_mark())
