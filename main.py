@@ -908,8 +908,8 @@
 #
 # print(randint(10, 15))
 # print(randrange(0, 10, 2))
-
-import random as r
+# import json
+# import random as r
 
 # print(r.randint(10, 15))
 # print(r.randrange(10))
@@ -6998,10 +6998,10 @@ import csv
 # for i in salary:
 #     get_salary(i.text)
 
-from bs4 import BeautifulSoup
-import requests
-import re
-import csv
+# from bs4 import BeautifulSoup
+# import requests
+# import re
+# import csv
 
 # req = requests.get("https://ru.wordpress.org/")
 # # req.encoding = 'utf-8'
@@ -7027,42 +7027,224 @@ import csv
 #     main()
 
 
+# def get_html(url):
+#     r = requests.get(url)
+#     return r.text
+#
+#
+# def refined(s):
+#     res = re.sub(r"\D+", "", s)
+#     return res
+#
+#
+# def write_csv(data):
+#     with open('plugins.csv', 'a') as f:
+#         writer = csv.writer(f, lineterminator="\r", delimiter=";")
+#         writer.writerow((data['name'], data['url'], data['rating']))
+#
+#
+# def get_data(html):
+#     soup = BeautifulSoup(html, 'lxml')
+#     p1 = soup.find_all('section', class_="plugin-section")[1]
+#     plugins = p1.find_all('article')
+#
+#     for plugin in plugins:
+#         name = plugin.find("h3").text
+#         # url = plugin.find("h3").find("a")['href']
+#         url = plugin.find("h3").find("a").get('href')
+#         rating = plugin.find("span", class_="rating-count").find("a").text
+#         r = refined(rating)
+#
+#         data = {'name': name, 'url': url, 'rating': r}
+#         write_csv(data)
+#
+#     # return len(plugins)
+#
+#
+# def main():
+#     url = "https://ru.wordpress.org/plugins/"
+#     get_data(get_html(url))
+#
+#
+# if __name__ == '__main__':
+#     main()
+
+
+# import json
+#
+# data = {"Россия": "Москва"}
+#
+#
+# class CountryCapital:
+#     def __init__(self, country, capital):
+#         self.country = country
+#         self.capital = capital
+#         data[self.country] = self.capital
+#
+#     def __str__(self):
+#         return f'{self.country}: {self.capital}'
+#
+#     @classmethod
+#     def add_country(cls, new_country, new_capital, filename):
+#         try:
+#             data1 = json.load(open(filename))
+#         except FileNotFoundError:
+#             data1 = {}
+#
+#         data1[new_country] = new_capital
+#
+#         with open(filename, "w") as f:
+#             json.dump(data1, f, indent=2, ensure_ascii=False)
+#
+#     @classmethod
+#     def delete_country(cls, del_country, filename):
+#         try:
+#             data1 = json.load(open(filename))
+#         except FileNotFoundError:
+#             data1 = {}
+#
+#         if del_country in data1:
+#             del data1[del_country]
+#
+#             with open(filename, "w") as f:
+#                 json.dump(data1, f, indent=2, ensure_ascii=False)
+#         else:
+#             print("Такой страны в базе нет")
+#
+#     @classmethod
+#     def search_data(cls, country, filename):
+#         try:
+#             data1 = json.load(open(filename))
+#         except FileNotFoundError:
+#             data1 = {}
+#
+#         if country in data1:
+#             print(f"Страна {country} столица {data1[country]} есть в словаре!")
+#         else:
+#             print(f"Страна {country} отсутствует в словаре")
+#
+#     @classmethod
+#     def change_capital(cls, country, new_value, filename):
+#         try:
+#             data1 = json.load(open(filename))
+#         except FileNotFoundError:
+#             data1 = {}
+#
+#         if country in data1:
+#             data1[country] = new_value
+#
+#             with open(filename, "w") as f:
+#                 json.dump(data1, f, indent=2, ensure_ascii=False)
+#         else:
+#             print("Такой страны в базе нет")
+#
+#     @classmethod
+#     def load_from_file(cls, filename):
+#         with open(filename, 'r') as f:
+#             print(json.load(f))
+#
+#
+# index = ''
+# filename1 = 'list_capital.json'
+# with open(filename1, "w") as fw:
+#     json.dump(data, fw, indent=2, ensure_ascii=False)
+#
+# while index != 6:
+#     try:
+#         print("*" * 40)
+#         index = int(input('Выбор действия:\n1 - добавление данных\n2 - удаление данных\n'
+#                           '3 - поиск данных\n4 - редактирование данных\n5 - просмотр данных\n'
+#                           '6 - завершение работы\nВвод: '))
+#         if index == 1:
+#             country_name = input("Введите название страны (с заглавной буквы): ")
+#             capital_name = input("Введите название столицы страны (с заглавной буквы): ")
+#             CountryCapital.add_country(country_name, capital_name, 'list_capital.json')
+#             print("Файл сохранен")
+#         if index == 2:
+#             country_name = input("Введите страну для удаления (с заглавной буквы): ")
+#             CountryCapital.delete_country(country_name, 'list_capital.json')
+#             print("Файл сохранен")
+#         if index == 3:
+#             country_name = input("Введите название страны (с заглавной буквы): ")
+#             CountryCapital.search_data(country_name, 'list_capital.json')
+#         if index == 4:
+#             country_name = input("Введите название страны столицу которой хотите изменить (с заглавной буквы): ")
+#             new_capital = input("Введите новое название столицы: ")
+#             CountryCapital.change_capital(country_name, new_capital, 'list_capital.json')
+#             print("Файл сохранен")
+#         if index == 5:
+#             CountryCapital.load_from_file('list_capital.json')
+#     except IndexError:
+#         break
+
+
+from bs4 import BeautifulSoup
+import requests
+import csv
+
+
 def get_html(url):
     r = requests.get(url)
     return r.text
 
 
-def refined(s):
-    res = re.sub(r"\D+", "", s)
-    return res
-
-
 def write_csv(data):
-    with open('plugins.csv', 'a') as f:
+    with open('plugins1.csv', 'a') as f:
         writer = csv.writer(f, lineterminator="\r", delimiter=";")
-        writer.writerow((data['name'], data['url'], data['rating']))
+        writer.writerow((data['name'],
+                        data['url'],
+                        data['snippet'],
+                        data['active_install'],
+                        data['tested']))
+
+
+def refine_cy(s):
+    return s.split()[-1]
 
 
 def get_data(html):
     soup = BeautifulSoup(html, 'lxml')
-    p1 = soup.find_all('section', class_="plugin-section")[1]
-    plugins = p1.find_all('article')
+    elements = soup.find_all("article", class_="plugin-card")
+    for el in elements:
+        try:
+            name = el.find('h3').text
+        except ValueError:
+            name = ''
 
-    for plugin in plugins:
-        name = plugin.find("h3").text
-        # url = plugin.find("h3").find("a")['href']
-        url = plugin.find("h3").find("a").get('href')
-        rating = plugin.find("span", class_="rating-count").find("a").text
-        r = refined(rating)
+        try:
+            url = el.find('h3').find("a").get('href')
+        except ValueError:
+            url = ''
 
-        data = {'name': name, 'url': url, 'rating': r}
+        try:
+            snippet = el.find('div', class_='entry-excerpt').text.strip()
+        except ValueError:
+            snippet = ''
+
+        try:
+            active = el.find("span", class_="active-installs").text.strip()
+        except ValueError:
+            active = ''
+
+        try:
+            c = el.find("span", class_="tested-with").text.strip()
+            cy = refine_cy(c)
+        except ValueError:
+            cy = ''
+
+        data = {
+            'name': name,
+            'url': url,
+            'snippet': snippet,
+            'active_install': active,
+            'tested': cy
+        }
+
         write_csv(data)
-
-    # return len(plugins)
 
 
 def main():
-    url = "https://ru.wordpress.org/plugins/"
+    url = "https://ru.wordpress.org/plugins/browse/blocks/"
     get_data(get_html(url))
 
 
