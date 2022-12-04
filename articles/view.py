@@ -57,5 +57,7 @@ class UserInterface:
     def remove_single_article(self, article):
         print(f"Статья {article} - была удалена")
 
-
+    @add_title("Сообщение об ошибке")
+    def show_incorrect_answer_error(self, answer):
+        print(f"Варианта {answer} не существует")
 
