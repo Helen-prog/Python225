@@ -7555,20 +7555,32 @@ import csv
     #         f.write(sql)
 
 
-import sqlite3 as sq
+# import sqlite3 as sq
+#
+# data = [('car', "машина"), ('house', 'дом'), ('tree', 'дерево'), ('color', 'цвет')]
+#
+# con = sq.connect(':memory:')
+# with con:
+#     cur = con.cursor()
+#     cur.execute("""
+#     CREATE TABLE IF NOT EXISTS dict(
+#     eng TEXT,
+#     ru TEXT
+#     )""")
+#
+#     cur.executemany("INSERT INTO dict VALUES (?, ?)", data)
+#
+#     cur.execute("SELECT ru FROM dict WHERE eng LIKE 'c%'")
+#     print(cur.fetchall())
 
-data = [('car', "машина"), ('house', 'дом'), ('tree', 'дерево'), ('color', 'цвет')]
 
-con = sq.connect(':memory:')
-with con:
-    cur = con.cursor()
-    cur.execute("""
-    CREATE TABLE IF NOT EXISTS dict(
-    eng TEXT,
-    ru TEXT
-    )""")
+import os
 
-    cur.executemany("INSERT INTO dict VALUES (?, ?)", data)
+from models.database import DATABASE_NAME
+import create_database as db_creator
 
-    cur.execute("SELECT ru FROM dict WHERE eng LIKE 'c%'")
-    print(cur.fetchall())
+if __name__ == '__main__':
+    db_is_created = os.path.exists(DATABASE_NAME)
+    if not db_is_created:
+        db_creator.create_database()
+
