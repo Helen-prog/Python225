@@ -7727,8 +7727,7 @@ import csv
 
 # pip install jinja2
 
-from jinja2 import Template
-
+# from jinja2 import Template
 
 # name = "Игорь"
 # age = 28
@@ -7758,11 +7757,173 @@ from jinja2 import Template
 #
 # print(msg)
 
-data = """{% raw %}Модуль Jinja вместо
-определения {{ name }}
-подставит соответствующее значение {% endraw %}"""
+# data = """{% raw %}Модуль Jinja вместо
+# определения {{ name }}
+# подставит соответствующее значение {% endraw %}"""
+#
+# tm = Template(data)
+# msg = tm.render(name="Игорь")
+#
+# print(msg)
 
-tm = Template(data)
-msg = tm.render(name="Игорь")
+# link = """В HTML-документе ссылка определяется так:
+# <a href="#">Ссылка</a>"""
+#
+# tm = Template("{{ link | e }}")
+# msg = tm.render(link=link)
+#
+# print(msg)
+
+# cities = [
+#     {'id': 1, 'city': 'Москва'},
+#     {'id': 2, 'city': 'Сочи'},
+#     {'id': 3, 'city': 'Смоленск'},
+#     {'id': 4, 'city': 'Минск'},
+#     {'id': 5, 'city': 'Ярославль'},
+# ]
+#
+# link = """<select name="cities">
+# {% for c in cities -%}
+# {% if c.id > 3 -%}
+#     <option value="{{ c['id'] }}">{{ c['city'] }}</option>
+# {% elif c.city == "Москва" -%}
+#     <option>{{ c['city'] }}</option>
+# {% else -%}
+#     {{ c['city'] }}
+# {% endif -%}
+# {% endfor -%}
+# </select>"""
+#
+# tm = Template(link)
+# msg = tm.render(cities=cities)
+#
+# print(msg)
+
+# menu = [
+#     {'url': '/index', 'title': 'Главная '},
+#     {'url': '/news', 'title': 'О нас'},
+#     {'url': '/about', 'title': 'Новости'},
+#     {'url': '/shop', 'title': 'Магазин'},
+#     {'url': '/contacts', 'title': 'Контакты'}
+# ]
+#
+# text = """
+#     <ul>
+#     {% for m in menu -%}
+#         {% if m['url'] == '/index' -%}
+#             <li><a href='{{ m['url'] }}' class='active'>{{ m['title'] }}</a></li>
+#         {% else -%}
+#             <li><a href='{{ m['url'] }}'>{{ m['title'] }}</a></li>
+#         {% endif -%}
+#     {% endfor -%}
+#     </ul>
+# """
+#
+# tm = Template(text)
+# msg = tm.render(menu=menu)
+# print(msg)
+
+# cars = [
+#     {'model': 'Audi', 'price': 23000},
+#     {'model': 'Skoda', 'price': 17300},
+#     {'model': 'Renault', 'price': 44300},
+#     {'model': 'Wolksvagen', 'price': 21300}
+# ]
+#
+# lst = [1, 2, 3, 4, 5, 6]
+#
+# # tpl = "Автомобиль: {{ (cs | min(attribute='price')).model }}"
+# # tpl = "Автомобиль: {{ cs | random }}"
+# tpl = "Автомобиль: {{ cs | replace('model', 'brand') }}"
+# tm = Template(tpl)
+# msg = tm.render(cs=cars)
+# print(msg)
+
+# persons = [
+#     {"name": "Алексей", "year": 18, "weight": 78.5},
+#     {"name": "Никита", "year": 28, "weight": 82.3},
+#     {"name": "Виталий", "year": 33, "weight": 94.2}
+# ]
+#
+# tpl = """
+# {%- for u in user -%}
+#     {% filter upper %} {{ u.name }} {% endfilter %} {% filter string %} {{u.year}} - {{u.weight}} {% endfilter %}
+# {% endfor -%}
+# """
+#
+# tm = Template(tpl)
+# msg = tm.render(user=persons)
+# print(msg)
+
+# html = '''
+# {%- macro input(name, value='', type='text', size=20) -%}
+#     <input type="{{ type }}" name="{{ name }}" value="{{ value }}" size="{{ size }}">
+# {%- endmacro %}
+#
+# <p>{{ input('username') }}</p>
+# <p>{{ input('email') }}</p>
+# <p>{{ input('password') }}</p>
+# '''
+#
+# tm = Template(html)
+# msg = tm.render()
+# print(msg)
+
+# html = """
+# {% macro input(name, placeholder, type='text') -%}
+#     <input type='{{ type }}' name='{{ name }}' placeholder='{{ placeholder }}'>
+# {%- endmacro %}
+#
+# <p>{{ input('firstname', 'Имя') }}</p>
+# <p>{{ input('lastname', 'Фамилия') }}</p>
+# <p>{{ input('address', 'Адрес')}}</p>
+# <p>{{ input('phone', 'Телефон', 'tel')}}</p>
+# <p>{{ input('email', 'Почта', 'email')}}</p>
+# """
+# tm = Template(html)
+# msg = tm.render()
+# print(msg)
+
+#
+# persons = [
+#     {"name": "Алексей", "year": 18, "weight": 78.5},
+#     {"name": "Никита", "year": 28, "weight": 82.3},
+#     {"name": "Виталий", "year": 33, "weight": 94.2}
+# ]
+#
+# html = '''
+#     {% macro list_users(list_of_user) -%}
+#     <ul>
+#         {% for u in list_of_user -%}
+#         <li>{{ u.name }} {{ caller(u) }} </li>
+#         {% endfor %}
+#     </ul>
+#     {%- endmacro %}
+#
+#     {% call(user) list_users(users) %}
+#         <ul>
+#             <li>age: {{ user.year }}</li>
+#             <li>weight: {{ user.weight }}</li>
+#         </ul>
+#     {% endcall -%}
+# '''
+#
+# tm = Template(html)
+# msg = tm.render(users=persons)
+# print(msg)
+
+from jinja2 import Environment, FileSystemLoader
+
+persons = [
+    {"name": "Алексей", "year": 18, "weight": 78.5},
+    {"name": "Никита", "year": 28, "weight": 82.3},
+    {"name": "Виталий", "year": 33, "weight": 94.2}
+]
+
+file_loader = FileSystemLoader('templates')
+env = Environment(loader=file_loader)
+
+tm = env.get_template('main.html')
+msg = tm.render(users=persons, title="About Jinja")
 
 print(msg)
