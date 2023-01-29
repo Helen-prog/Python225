@@ -1,6 +1,8 @@
 import sqlite3
 import time
 import math
+import re
+from flask import url_for
 
 
 class FDataBase:
@@ -26,6 +28,11 @@ class FDataBase:
             if res['count'] > 0:
                 print("Статья с таким url уже существует")
                 return False
+
+            base = url_for('static', filename='images')
+            text = re.sub(r'(?P<tag><img\s+[^>]*src=)(?P<quote>[\'"])(?P<url>.+?)(?P=quote)>', r'\g<tag>' + base +
+                          r"/\g<url>>", text)
+
             tm = math.floor(time.time())
             self.__cur.execute("INSERT INTO posts VALUES(NULL, ?, ?, ?, ?)", (title, text, url, tm))
             self.__db.commit()
@@ -47,11 +54,11 @@ class FDataBase:
 
     def get_post(self, alias):
         try:
-            self.__cur.execute(f"SELECT title, text FROM posts WHERE id={alias} LIMIT 1")
+            self.__cur.execute(f"SELECT title, text FROM posts WHERE url='{alias}' LIMIT 1")
             res = self.__cur.fetchone()
             if res:
                 return res
         except sqlite3.Error as e:
-            print("Ошибка получения статьи из БД " + str(e))
+            print("Ошибка получения статьи из БД!!! " + str(e))
 
         return False, False
