@@ -59,3 +59,12 @@ python manage.py migrate
 python manage.py createsuperuser
 
 python manage.py changepassword admin (имя пользователя)(новый пароль)
+
+skills
+	static
+		css
+			style.css
+		skills
+			wc.jpg
+			
+http://127.0.0.1:8000/blog/1/
