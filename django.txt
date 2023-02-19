@@ -68,3 +68,26 @@ skills
 			wc.jpg
 			
 http://127.0.0.1:8000/blog/1/
+
+
+
+django-admin startproject todos
+
+python manage.py startapp todo
+
+
+models.CASCADE - если пользователь будет удален, то удалятся все его задачи
+models.PROTECTED - запрет на удаление пользователя, пока у него есть задачи
+models.SET_NULL - задачи останутся в базе, даже при удалении пользователя, но значение в поле пользователь изменится на None
+models.SET_DEFAULT - задачи останутся в базе, даже при удалении пользователя, но значение в поле пользователь изменится на значение заданное по умолчанию
+
+
+django-admin startproject devsearch
+
+python manage.py startapp projects
+
+
+ForeignKey - для связи Many to One (один ко многим)
+ManyToManyField - для связи Many to Manu (многие ко многим)
+OneToOneField - для связи One to One (один к одному)
+
