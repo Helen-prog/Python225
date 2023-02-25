@@ -85,9 +85,19 @@ models.SET_DEFAULT - задачи останутся в базе, даже пр�
 django-admin startproject devsearch
 
 python manage.py startapp projects
+python manage.py startapp users
 
 
 ForeignKey - для связи Many to One (один ко многим)
 ManyToManyField - для связи Many to Manu (многие ко многим)
 OneToOneField - для связи One to One (один к одному)
+
+
+python manage.py shell
+from projects.models import Project
+
+
+Project.objects.get(id=1)
+Project.objects.filter(title__startswith="Website")
+
 
