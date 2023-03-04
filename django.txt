@@ -100,4 +100,9 @@ from projects.models import Project
 Project.objects.get(id=1)
 Project.objects.filter(title__startswith="Website")
 
+Создать пользователей и три профиля для них. 
+Для каждого проекта добавить владельца.
+
+
+
 
