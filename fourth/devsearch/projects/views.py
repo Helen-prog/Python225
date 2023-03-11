@@ -2,11 +2,41 @@ from django.shortcuts import render, redirect
 from .models import Project, Tag
 from .forms import ProjectForm
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 def projects(request):
     pr = Project.objects.all()
-    context = {'projects': pr}
+    page = request.GET.get('page')
+    results = 3
+    paginator = Paginator(pr, results)
+
+    try:
+        pr = paginator.page(page)
+    except PageNotAnInteger:
+        page = 1
+        pr = paginator.page(page)
+    except EmptyPage:
+        page = paginator.num_pages
+        pr = paginator.page(page)
+
+    left_index = int(page) - 4
+
+    if left_index < 1:
+        left_index = 1
+
+    right_index = int(page) + 5
+
+    if right_index > paginator.num_pages:
+        right_index = paginator.num_pages + 1
+
+    custom_range = range(left_index, right_index)
+
+    context = {
+        'projects': pr,
+        'paginator': paginator,
+        'custom_range': custom_range
+    }
     return render(request, "projects/projects.html", context)
 
 
@@ -39,17 +69,17 @@ def update_project(request, pk):
     form = ProjectForm(instance=project)
 
     if request.method == "POST":
-        newtags = request.POST.get('newtags').replace(",", "").split()
+        new_tags = request.POST.get('tags').replace(",", " ").split()
         form = ProjectForm(request.POST, request.FILES, instance=project)
         if form.is_valid():
             project = form.save()
-            for tag in newtags:
+            for tag in new_tags:
                 tag, created = Tag.objects.get_or_create(name=tag)
                 project.tags.add(tag)
             return redirect('account')
 
     context = {'form': form, 'project': project}
-    return render(request, 'project/form-template.html', context)
+    return render(request, 'projects/form-template.html', context)
 
 
 @login_required(login_url="login")
