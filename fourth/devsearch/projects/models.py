@@ -17,6 +17,23 @@ class Project(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        ordering = ['-vote_ratio', '-vote_total', 'title']
+
+    def reviewers(self):
+        queryset = self.review_set.all().values_list('owner__id', flat=True)
+        return queryset
+
+    def get_vote_count(self):
+        reviews = self.review_set.all()
+        up_votes = reviews.filter(value="up").count()
+        total_votes = reviews.count()
+        ratio = (up_votes / total_votes) * 100
+        self.vote_total = total_votes
+        self.vote_ratio = ratio
+
+        self.save()
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=200)

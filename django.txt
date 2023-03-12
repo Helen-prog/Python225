@@ -103,6 +103,24 @@ Project.objects.filter(title__startswith="Website")
 Создать пользователей и три профиля для них. 
 Для каждого проекта добавить владельца.
 
+profile_form.html
 
+
+users -> utils.py
+
+
+mkvirtualenv --python=/usr/bin/python3.9 dev_venv
+
+deactivate
+workon dev_venv
+
+pip install django
+pip install pillow
+
+/home/HelenKozovyakina/.virtualenvs/dev_venv
+
+python manage.py collectstatic
+
+https://helenkozovyakina.pythonanywhere.com/
 
 
