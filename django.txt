@@ -123,4 +123,20 @@ python manage.py collectstatic
 
 https://helenkozovyakina.pythonanywhere.com/
 
+fifth
+
+django-admin startproject programming_blog
+
+python manage.py startapp blog
+
+<slug:post_slug>
+str
+int
+slug
+uuid
+path 
+
+templatetags
+	blog_tags.py
+
 
