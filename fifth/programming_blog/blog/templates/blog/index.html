@@ -19,7 +19,7 @@
                     {{ p.title }}
                 </a>
             </h2>
-            <p>{{ p.content|linebreaks|truncatewords:50 }}</p>
+            <p>{{ p.content|striptags|truncatewords:50 }}</p>
         </div>
         <p class="date">Дата: {{ p.time_update|date:"d-m-Y H:i:s" }}</p>
     </li>

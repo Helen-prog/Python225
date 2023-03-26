@@ -138,5 +138,12 @@ path
 
 templatetags
 	blog_tags.py
+	
+	
+utils.py
 
+
+pip install django-simple-captcha
+
+pip install django-ckeditor
 
