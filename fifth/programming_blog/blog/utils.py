@@ -3,12 +3,13 @@ from django.db.models import Count
 
 menu = [
     {'title': 'Добавить статью', 'url_name': 'add_page'},
-    {'title': 'Войти', 'url_name': 'index'},
+    # {'title': 'Регистрация', 'url_name': 'register'},
+    # {'title': 'Войти', 'url_name': 'login'},
 ]
 
 
 class DataMixin:
-    paginate_by = 2
+    paginate_by = 3
 
     def get_user_context(self, **kwargs):
         context = kwargs
